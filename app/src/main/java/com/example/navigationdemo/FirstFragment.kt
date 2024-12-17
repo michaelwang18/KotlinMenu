@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -26,9 +27,32 @@ class FirstFragment : Fragment() {
     }
 
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val menuHost: MenuHost = requireActivity();
+
+        val button: Button = view.findViewById(R.id.buttonFrag1)
+        button.setOnClickListener {
+            val popup = PopupMenu(requireActivity(), it) // reminder: "it" refers to the button that was clicked
+            popup.setOnMenuItemClickListener(object: PopupMenu.OnMenuItemClickListener {
+                override fun onMenuItemClick(item: MenuItem?): Boolean {
+                    TODO("Not yet implemented")
+                }
+            })
+            val inflater: MenuInflater = popup.menuInflater
+            inflater.inflate(R.menu.menu_third, popup.menu)
+            popup.show()
+        }
+
+
+
+
+
+
+
+
 
         menuHost.addMenuProvider(object : MenuProvider{
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
